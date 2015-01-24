@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/glenjamin/checkers.svg?branch=master)](https://travis-ci.org/glenjamin/checkers)
 
+<img src="https://drive.google.com/uc?id=0BxqNu2E4b85zeWtxZGtOR1doaXM" align="right" />
+
 Property-based testing for JavaScript via ClojureScript's [test.check](https://github.com/clojure/test.check).
 
 test.check is a Clojure property-based testing tool inspired by [QuickCheck](http://www.quviq.com/products/erlang-quickcheck/). The core idea of test.check is that instead of enumerating expected input and output for unit tests, you write properties about your function that should hold true for all inputs. This lets you write concise, powerful tests.
