@@ -1,5 +1,6 @@
 /*eslint-env mocha */
 var _ = require('lodash');
+var assert = require('assert');
 
 var checkers = require('..');
 var gen = checkers.gen;
@@ -23,5 +24,25 @@ describe("checkers", function() {
                 return _.isEqual(stdlib, lodash);
             }
         ).check(100);
+    });
+    it("errors if property is not satisfied", function() {
+        try {
+            checkers.forAll([gen.int], function(i) {
+                return _.isString(i);
+            }).check(1);
+            throw new Error("Shouldn't throw");
+        } catch(ex) {
+            assert.notEqual(ex.message, "Shouldn't throw");
+        }
+    });
+    it("errors if property checker throws", function() {
+        try {
+            checkers.forAll([gen.int], function() {
+                throw new Error("whoops");
+            }).check(1);
+            throw new Error("Shouldn't throw");
+        } catch(ex) {
+            assert.equal(ex.message, "whoops");
+        }
     });
 });

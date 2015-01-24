@@ -5,7 +5,7 @@
             [goog.object]))
 
 ;; Interop utils
-(def format (aget (js/require "util") "format"))
+(def ^:private format (aget (js/require "util") "format"))
 
 (defn- obj-seq
   "Seq from enumerable keys of a JS Object"
@@ -27,10 +27,10 @@
 
 ;; Check API
 
-(defn format-args [arglist]
+(defn- format-args [arglist]
   (.join (into-array (map #(format "%j" %) arglist)) ","))
 
-(defn generate-message
+(defn- generate-message
   [{:keys [num-tests fail seed]
     {:keys [smallest]} :shrunk}]
   (format "Failed after %d test(s)\nInput: %s\nShrunk to: %s\nSeed: %s"
@@ -41,10 +41,11 @@
   [property n & [opts]]
   (let [opts (apply concat (js->clj opts :keywordize-keys true))
         {:keys [result] :as r} (apply tc/quick-check n property opts)]
-    (if-not result
-      (let [ex (js/Error. (generate-message r))]
-        (aset ex "result" (clj->js r))
-        (throw ex)))))
+    (cond
+      (instance? js/Error result) (throw result)
+      (false? result) (let [ex (js/Error. (generate-message r))]
+                        (aset ex "result" (clj->js r))
+                        (throw ex)))))
 
 (aset js/exports "forAll"
       (fn [& args]
