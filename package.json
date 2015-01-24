@@ -1,0 +1,36 @@
+{
+  "name": "checkers",
+  "version": "0.9.0",
+  "description": "Property-based testing for JavaScript via ClojureScript's test.check",
+  "main": "checkers.js",
+  "scripts": {
+    "clean": "lein clean",
+    "build": "lein cljsbuild once release",
+    "build-dev": "lein cljsbuild once dev",
+    "dev": "lein cljsbuild auto dev",
+    "test": "mocha",
+    "repl": "./scripts/repl",
+    "prepublish": "npm run clean && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/glenjamin/checkers.git"
+  },
+  "keywords": [
+    "test",
+    "testing",
+    "property-based",
+    "quickcheck"
+  ],
+  "author": "Glen Mailer <glen@stainlessed.co.uk>",
+  "license": "EPL",
+  "bugs": {
+    "url": "https://github.com/glenjamin/checkers/issues"
+  },
+  "homepage": "https://github.com/glenjamin/checkers",
+  "devDependencies": {
+    "lodash": "^2.4.1",
+    "mocha": "^2.1.0",
+    "source-map-support": "^0.2.9"
+  }
+}
