@@ -2,10 +2,10 @@ language: node_js
 node_js:
   - 0.10
   - 0.11
+sudo: false
 before_install:
-  - sudo apt-get update
-  - sudo apt-get install openjdk-7-jre
-  - sudo wget https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein -O /usr/bin/lein
-  - sudo chmod +x /usr/bin/lein
+  - wget https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein -O scripts/lein
+  - chmod +x scripts/lein
+  - export PATH=scripts/lein:$PATH
   - npm run clean
   - npm run build-dev
