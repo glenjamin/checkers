@@ -6,6 +6,6 @@ sudo: false
 before_install:
   - wget https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein -O scripts/lein
   - chmod +x scripts/lein
-  - export PATH=scripts/lein:$PATH
+  - export PATH=`pwd`/scripts:$PATH
   - npm run clean
   - npm run build-dev
