@@ -81,10 +81,9 @@
 
 (aset js/exports "gen" "int" gen/int)
 (aset js/exports "gen" "nat" gen/nat)
-(aset js/exports "gen" "posInt" gen/pos-int)
-(aset js/exports "gen" "negInt" gen/neg-int)
-(aset js/exports "gen" "sPosInt" gen/s-pos-int)
-(aset js/exports "gen" "sNegInt" gen/s-neg-int)
+(aset js/exports "gen" "posInt" gen/s-pos-int)
+(aset js/exports "gen" "negInt" gen/s-neg-int)
+(aset js/exports "gen" "zeroOrNegInt" gen/neg-int)
 
 (aset js/exports "gen" "array" (arrayify gen/vector))
 (aset js/exports "gen" "shuffle" (arrayify gen/shuffle))

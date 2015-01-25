@@ -53,6 +53,11 @@ More coming soon!
 
 * Generator tests
 * Generator docs
+* Sugar for popular testing frameworks
+```js
+var checking = require('checkers/mocha'), gen = checking.gen;
+checking("property", [gen/int], function ...)
+```
 * Tutorial
 * Better examples
 
