@@ -45,7 +45,24 @@ checkers.forAll(
 ).check(1000, {seed: 1422111938215});
 ```
 
-## Documentation
+# Usage with Mocha
+
+Checkers comes with a helper function to make writing tests for mocha simpler.
+
+```js
+var checking = require('checkers/mocha');
+var gen = checking.gen;
+describe("Addition", function() {
+    checking("+1", [gen.int], function(i) {
+        return i + 1 > i;
+    }, 100, {seed: 1422111938215});
+});
+```
+
+The count is optional, and defaults to 1000.
+The extra options are also optional.
+
+## Full Documentation
 
 More coming soon!
 
@@ -53,11 +70,7 @@ More coming soon!
 
 * Generator tests
 * Generator docs
-* Sugar for popular testing frameworks
-```js
-var checking = require('checkers/mocha'), gen = checking.gen;
-checking("property", [gen/int], function ...)
-```
+* Sugar for other testing frameworks?
 * Tutorial
 * Better examples
 
