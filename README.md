@@ -1,6 +1,6 @@
 # checkers
 
-[![Build Status](https://travis-ci.org/glenjamin/checkers.svg?branch=master)](https://travis-ci.org/glenjamin/checkers)
+[![npm version](https://img.shields.io/npm/v/checkers.svg)](https://www.npmjs.com/package/checkers) [![Build Status](https://img.shields.io/travis/glenjamin/checkers/master.svg)](https://travis-ci.org/glenjamin/checkers)
 
 <img src="https://drive.google.com/uc?id=0BxqNu2E4b85zeWtxZGtOR1doaXM" align="right" />
 
