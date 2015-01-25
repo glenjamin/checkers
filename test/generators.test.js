@@ -39,17 +39,17 @@ describe("checkers.gen", function() {
     }, 100);
     checking(".string", [gen.string], function(c) {
         return _.isString(c);
-    }, 1000);
+    }, 100);
     checking(".stringAscii", [gen.stringAscii], function(s) {
         return _.isString(s) && _.every(s, function(c) {
             return c.charCodeAt(0) <= 127 && c.charCodeAt(0) >= 0;
         });
-    }, 1000);
+    }, 100);
     checking(".stringAlphanum", [gen.stringAlphanum], function(s) {
         return _.isString(s) && _.every(s, function(c) {
             return /^\w$/.test(c);
         });
-    }, 1000);
+    }, 100);
     describe(".tuple", function() {
         checking("pairs of ints", [gen.tuple(gen.int, gen.int)], function(t) {
             return _.isArray(t) && t.length == 2 &&
@@ -71,6 +71,49 @@ describe("checkers.gen", function() {
             1000
         );
     });
+    describe(".array", function() {
+        checking("array of ints", [gen.array(gen.int)], function(arr) {
+            return _.isArray(arr) && _.every(arr, _.isNumber);
+        });
+        checking("array of strings", [gen.array(gen.string)], function(arr) {
+            return _.isArray(arr) && _.every(arr, _.isString);
+        }, 100);
+        checking("fixed length array", [gen.array(gen.int, 7)], function(arr) {
+            return _.isArray(arr) && _.every(arr, _.isNumber) &&
+                arr.length === 7;
+        });
+        checking("bounded length array",
+            [gen.array(gen.int, 3, 17)],
+            function(arr) {
+                return _.isArray(arr) && _.every(arr, _.isNumber) &&
+                    arr.length >= 3 && arr.length <= 17;
+            }
+        );
+    });
+    describe(".obj", function() {
+        checking("int -> int", [gen.obj(gen.int, gen.int)], function(o) {
+            return _.isObject(o) && _.every(o, function(v, k) {
+                return _.isNumber(v) && _.isString(k) && /^-?\d+$/.test(k);
+            });
+        }, 100);
+        checking("charAlpha -> int",
+            [gen.obj(gen.charAlpha, gen.int)],
+            function(o) {
+                return _.isObject(o) && _.every(o, function(v, k) {
+                    return _.isString(k) && _.isNumber(v);
+                });
+            },
+            100
+        );
+    });
+    checking(".object",
+        [gen.object({a: gen.int, b: gen.charAlpha, c: gen.nat})],
+        function(o) {
+            return _.isEqual(['a', 'b', 'c'], _.keys(o)) &&
+                _.isNumber(o.a) && /[a-z]/i.test(o.b) &&
+                _.isNumber(o.c) && o.c >= 0;
+        }
+    );
 });
 
 function wholeNumber(n) {
