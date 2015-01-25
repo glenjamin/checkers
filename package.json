@@ -10,7 +10,7 @@
     "dev": "lein cljsbuild auto dev",
     "test": "mocha",
     "repl": "./scripts/repl",
-    "prepublish": "npm run clean && npm run build"
+    "prepublish": "npm run clean && npm run build && npm test"
   },
   "repository": {
     "type": "git",
