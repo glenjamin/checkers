@@ -41,8 +41,9 @@
   [property n & [opts]]
   (let [opts (apply concat (js->clj opts :keywordize-keys true))
         {:keys [result] :as r} (apply tc/quick-check n property opts)
+        summary (clj->js r)
         failure (fn [ex]
-                  (aset ex "checkers-result" (clj->js r))
+                  (aset ex "checkers-result" summary)
                   (throw ex))]
     (cond
       (instance? js/Error result) (let [ex result]
@@ -51,7 +52,8 @@
                                                (generate-message r)))
                                     (failure ex))
       (false? result) (let [ex (js/Error. (generate-message r))]
-                        (failure ex)))))
+                        (failure ex))
+      :else summary)))
 
 (aset js/exports "forAll"
       (fn [& args]

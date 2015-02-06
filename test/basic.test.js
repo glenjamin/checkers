@@ -25,6 +25,15 @@ describe("checkers", function() {
             }
         ).check(100);
     });
+    it("returns summary of run", function() {
+        var summary = checkers.forAll(
+            [gen.int],
+            function(n) {
+                return (n * n) >= n;
+            }
+        ).check(100);
+        assert.equal(summary["num-tests"], 100);
+    });
     it("errors if property is not satisfied", function() {
         try {
             checkers.forAll([gen.int], function(i) {
