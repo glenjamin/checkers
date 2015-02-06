@@ -114,6 +114,13 @@ describe("checkers.gen", function() {
                 _.isNumber(o.c) && o.c >= 0;
         }
     );
+    checking(".pick",
+        [gen.pick([1, 'a', false])],
+        function(x) {
+            return x == 1 || x == 'a' || x === false;
+        },
+        10
+    );
 });
 
 function wholeNumber(n) {

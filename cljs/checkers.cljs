@@ -77,7 +77,7 @@
 (aset js/exports "gen" "choose" gen/choose)
 (aset js/exports "gen" "oneOf" gen/one-of)
 (aset js/exports "gen" "frequency" gen/frequency)
-(aset js/exports "gen" "elements" gen/elements)
+(aset js/exports "gen" "pick" gen/elements)
 (aset js/exports "gen" "suchThat" gen/such-that)
 (aset js/exports "gen" "notEmpty" gen/not-empty)
 (aset js/exports "gen" "noShrink" gen/no-shrink)
