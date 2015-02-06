@@ -51,8 +51,8 @@
                                           (str (.-message ex) "\n"
                                                (generate-message r)))
                                     (failure ex))
-      (false? result) (let [ex (js/Error. (generate-message r))]
-                        (failure ex))
+      (not result) (let [ex (js/Error. (generate-message r))]
+                     (failure ex))
       :else summary)))
 
 (aset js/exports "forAll"

@@ -44,6 +44,26 @@ describe("checkers", function() {
             assert.notEqual(ex.message, "Shouldn't throw");
         }
     });
+    it("treats null as a failure", function() {
+        try {
+            checkers.forAll([gen.int], function() {
+                return null;
+            }).check(1);
+            throw new Error("Shouldn't throw");
+        } catch(ex) {
+            assert.notEqual(ex.message, "Shouldn't throw");
+        }
+    });
+    it("treats undefined as a failure", function() {
+        try {
+            checkers.forAll([gen.int], function() {
+                return undefined;
+            }).check(1);
+            throw new Error("Shouldn't throw");
+        } catch(ex) {
+            assert.notEqual(ex.message, "Shouldn't throw");
+        }
+    });
     it("errors if property checker throws", function() {
         try {
             checkers.forAll([gen.int], function() {
