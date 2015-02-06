@@ -40,12 +40,18 @@
   "Wrap up quick-check to take options as a JS object and throw on failure"
   [property n & [opts]]
   (let [opts (apply concat (js->clj opts :keywordize-keys true))
-        {:keys [result] :as r} (apply tc/quick-check n property opts)]
+        {:keys [result] :as r} (apply tc/quick-check n property opts)
+        failure (fn [ex]
+                  (aset ex "checkers-result" (clj->js r))
+                  (throw ex))]
     (cond
-      (instance? js/Error result) (throw result)
+      (instance? js/Error result) (let [ex result]
+                                    (aset ex "message"
+                                          (str (.-message ex) "\n"
+                                               (generate-message r)))
+                                    (failure ex))
       (false? result) (let [ex (js/Error. (generate-message r))]
-                        (aset ex "result" (clj->js r))
-                        (throw ex)))))
+                        (failure ex)))))
 
 (aset js/exports "forAll"
       (fn [& args]

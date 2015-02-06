@@ -42,7 +42,10 @@ describe("checkers", function() {
             }).check(1);
             throw new Error("Shouldn't throw");
         } catch(ex) {
-            assert.equal(ex.message, "whoops");
+            assert.ok(
+                /whoops/.test(ex.message),
+                "expected /whoops/ to match " + ex.message
+            );
         }
     });
 });
