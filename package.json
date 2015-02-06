@@ -1,6 +1,6 @@
 {
   "name": "checkers",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "description": "Property-based testing for JavaScript via ClojureScript's test.check",
   "main": "checkers.js",
   "scripts": {
