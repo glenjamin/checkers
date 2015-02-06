@@ -66,6 +66,8 @@ The extra options are also optional.
 
 More coming soon!
 
+For now you'll have to rely on the examples in the `test` folder.
+
 ## TODO
 
 * Generator tests
