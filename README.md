@@ -76,7 +76,7 @@ Here's an example of generating instances of a 3-D `Point` object.
 
 ```js
 var genPoint = gen.fmap(
-    function(p) { return new Point(p.x, p.y, p.z) }
+    function(p) { return new Point(p.x, p.y, p.z) },
     gen.object({ x: gen.int, y: gen.int, z: gen.int })
 );
 ```
