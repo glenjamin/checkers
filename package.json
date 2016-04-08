@@ -20,7 +20,16 @@
     "test",
     "testing",
     "property-based",
-    "quickcheck"
+    "property",
+    "quickcheck",
+    "stochastic",
+    "fuzz",
+    "fuzzer",
+    "proper",
+    "triq",
+    "stoch",
+    "afl",
+    "checkers"
   ],
   "author": "Glen Mailer <glen@stainlessed.co.uk>",
   "license": "EPL",
