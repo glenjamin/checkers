@@ -81,6 +81,50 @@ var genPoint = gen.fmap(
 );
 ```
 
+Testing the generator in a Node REPL is also simple.
+
+```
+$ # assumes you've already done npm install --save-dev checkers
+$ node
+>
+> var checkers = require('checkers');
+undefined
+>
+> var gen = checkers.gen;
+undefined
+>
+> var newlog = (x,y,z) => console.log(`new point ${x} ${y} ${z}`);
+undefined
+>
+> var Point = function(x,y,z) { newlog(x,y,z); this.coord=[x,y,z]; return this; }
+undefined
+>
+> var genPoint = gen.fmap( p => new Point(p.x, p.y, p.z) , gen.object({ x: gen.int, y: gen.int, z: gen.int }) );
+undefined
+>
+> checkers.sample(genPoint);
+new point 0 0 0
+new point -1 -1 -1
+new point -1 -1 2
+new point 3 -2 -2
+new point 1 -2 2
+new point 0 -4 0
+new point -4 1 -3
+new point -4 -1 -6
+new point 3 -2 -1
+new point 4 2 -6
+[ { coord: [ 0, 0, 0 ] },
+  { coord: [ -1, -1, -1 ] },
+  { coord: [ -1, -1, 2 ] },
+  { coord: [ 3, -2, -2 ] },
+  { coord: [ 1, -2, 2 ] },
+  { coord: [ 0, -4, 0 ] },
+  { coord: [ -4, 1, -3 ] },
+  { coord: [ -4, -1, -6 ] },
+  { coord: [ 3, -2, -1 ] },
+  { coord: [ 4, 2, -6 ] } ]
+```
+
 ## TODO
 
 * Generator tests
