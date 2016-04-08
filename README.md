@@ -68,6 +68,19 @@ More coming soon!
 
 For now you'll have to rely on the examples in the `test` folder.
 
+## Building your own generators
+
+The simplest way to build your own generators is with `gen.fmap`. This lets you apply a function to generated values to produce new ones.
+
+Here's an example of generating instances of a 3-D `Point` object.
+
+```js
+var genPoint = gen.fmap(
+    function(p) { return new Point(p.x, p.y, p.z) }
+    gen.object({ x: gen.int, y: gen.int, z: gen.int })
+);
+```
+
 ## TODO
 
 * Generator tests
