@@ -2,11 +2,11 @@
   :description "Property-based testing for JavaScript via ClojureScript's test.check"
   :url "https://github.com/glenjamin/checkers"
 
-  :dependencies [[org.clojure/clojure "1.6.0"]
-                 [org.clojure/clojurescript "0.0-2665"]
-                 [org.clojure/test.check "0.7.0"]]
+  :dependencies [[org.clojure/clojure "1.8.0"]
+                 [org.clojure/clojurescript "1.8.40"]
+                 [org.clojure/test.check "0.9.0"]]
 
-  :plugins [[lein-cljsbuild "1.0.4"]]
+  :plugins [[lein-cljsbuild "1.1.3"]]
 
   :source-paths ["cljs"]
 

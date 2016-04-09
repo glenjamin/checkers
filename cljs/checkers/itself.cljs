@@ -1,7 +1,7 @@
-(ns checkers
-  (:require [cljs.test.check :as tc]
-            [cljs.test.check.properties :as prop]
-            [cljs.test.check.generators :as gen]
+(ns checkers.itself
+  (:require [clojure.test.check :as tc]
+            [clojure.test.check.properties :as prop]
+            [clojure.test.check.generators :as gen]
             [goog.object]))
 
 ;; Interop utils
