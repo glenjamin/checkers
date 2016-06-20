@@ -25,7 +25,5 @@ function checking(desc, args, body, n, options) {
         options = n;
         n = 1000;
     }
-    it(desc, function() {
-        checkers.forAll(args, body).check(n, options);
-    });
+    return checkers.forAll(args, body).check(n, options);
 }
